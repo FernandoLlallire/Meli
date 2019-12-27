@@ -1,4 +1,4 @@
-const Register = require('Register');
+const Register = require('./Register');
 
 exports.findRegister = req => Register.findOne({}).exec();
 
