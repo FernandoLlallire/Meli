@@ -1,0 +1,20 @@
+version: "2"
+services:
+  node_web:
+    build: .
+    container_name: "meli_node"
+    volumes:
+      - ".:/src/app"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo_db
+    links:
+      - mongo_db
+  mongo_db:
+    container_name: "register_meli"
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./mongoData:/data/db"
