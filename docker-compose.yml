@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
   node_web:
     build: .
@@ -7,22 +7,29 @@ services:
       - ".:/src/app"
     ports:
       - "3000:3000"
-    depends_on:
-      - mongo_db
-      - redis_registers
-      - redis_cache
-  mongo_db:
-    container_name: "Mongo_reg"
-    image: mongo:4.2.2
-    ports:
-      - "27017:27017"
-  redis_registers:
-    container_name: "Redis_reg"
+    networks:
+      - project
+    # depends_on:
+      # - mongo_db
+      # - redis_registers
+      # - redis_cache
+  # mongo_db:
+  #   container_name: "Mongo_reg"
+  #   image: mongo:4.2.2
+  #   ports:
+  #     - "27017:27017"
+  redis_logs:
+    container_name: "redis_logs"
     image: redis:5.0.7
-    ports:
-      - "6379:6379"
+    networks:
+      - project
   redis_cache:
-    container_name: "Redis_Cache"
+    container_name: "redis_cache"
     image: redis:5.0.7
     ports:
       - "6380:6379"
+    networks:
+      - project
+networks:
+  project:
+    driver: bridge
