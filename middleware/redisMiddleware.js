@@ -7,7 +7,7 @@ Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
 );
 
 exports.checkByDay = (req, res, next, redisContex) => {
-  // redisContex.zremrangebyscore()
+  redisContex.zremrangebyscore([constants.keyLogsByDay, 0, Number(req.requestCurrentTime) - Number(constants.milisInDay)]);
   req.requestCurrentTime = Date.now();
   redisContex.zrange(constants.keyLogsByDay, 0, Number(req.requestCurrentTime) - Number(constants.milisInDay), 'WITHSCORES', (err,result) => {
         if(err)

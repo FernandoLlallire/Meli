@@ -6,7 +6,7 @@ const redisMiddleware = require('./middleware/redisMiddleware');
 const numCPUs = require('os').cpus().length;
 
 if (cluster.isMaster) {
-  console.log(`Master ${process.pid} is running with ${numCPUs}`);
+  console.log(`Master ${process.pid} is running with ${numCPUs} threads`);
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
@@ -15,7 +15,6 @@ if (cluster.isMaster) {
   });
 } else {
   const app = express();
-  // redis_registers.createClient({port:6380});
   const redisCache = redisControler.getClientRedisCache();
   const redisLogs = redisControler.getClientRedisLogs();
   // require("./config/mongodb");

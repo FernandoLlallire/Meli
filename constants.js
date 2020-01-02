@@ -5,8 +5,8 @@ module.exports = Object.freeze({
   quotaPerMinute : 2,
   containerRedisCache : 'redis_cache',
   containerRedisLogs : 'redis_logs',
-  // keyLogsByMinute : 'logsByMinute',
   keyLogsByDay : 'logsByDay',
   keyLogsBanByDay : 'logsBanByDay',
-  keyLogsBanByMinute :'logsBanByMinute'
+  keyLogsBanByMinute :'logsBanByMinute',
+  sortedSetDelimitator: ':'
 })
