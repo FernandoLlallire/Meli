@@ -6,7 +6,8 @@ module.exports = Object.freeze({
   containerRedisCache : 'redis_cache',
   containerRedisLogs : 'redis_logs',
   keyLogsByDay : 'logsByDay',
-  keyLogsBanByDay : 'logsBanByDay',
-  keyLogsBanByMinute :'logsBanByMinute',
+  keyIpBanByDay : 'logsBanByDay',
+  keyIpBanByMinute :'logsBanByMinute',
   sortedSetDelimitator: ':'
 })
+// TODO: Add order for values that i'll use in the string for redis

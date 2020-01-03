@@ -1,7 +1,7 @@
 const cluster = require('cluster');
 const express = require('express');
 const registerController = require('./controllers/register.controller');
-const redisControler = require('./controllers/redisControler');
+const redisControler = require('./controllers/redisController');
 const redisMiddleware = require('./middleware/redisMiddleware');
 const numCPUs = require('os').cpus().length;
 
@@ -15,8 +15,8 @@ if (cluster.isMaster) {
   });
 } else {
   const app = express();
-  const redisCache = redisControler.getClientRedisCache();
-  const redisLogs = redisControler.getClientRedisLogs();
+  const redisCache = redisControler.getClientConnection(containerRedisLogs);
+  // const redisLogs = redisControler.getClientConnection();
   // require("./config/mongodb");
   // app.get('/', (req, res) =>{registerController.sendRegister(req).then(save => res.status(200).send(save))});
   // app.get('/list', (req, res) => registerController.getAll().then(data => res.status(200).send(data)))
