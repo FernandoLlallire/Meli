@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 services:
   node_web:
     build: .
@@ -9,15 +9,6 @@ services:
       - "3000:3000"
     networks:
       - project
-    # depends_on:
-      # - mongo_db
-      # - redis_registers
-      # - redis_cache
-  # mongo_db:
-  #   container_name: "Mongo_reg"
-  #   image: mongo:4.2.2
-  #   ports:
-  #     - "27017:27017"
   redis_logs:
     container_name: "redis_logs"
     image: redis:5.0.7
@@ -33,3 +24,4 @@ services:
 networks:
   project:
     driver: bridge
+# https://stackoverflow.com/questions/37871540/how-many-cpus-does-a-docker-container-use/54112066

@@ -7,12 +7,11 @@ function printValues(req,res) {
 }
 
 
-
 module.exports = function(redisLogs, redisCache) {
   const router = require('express').Router();
   router.get('/', redisMiddleware.clearByTimeForLogs.bind(redisLogs), redisMiddleware.getAllDataFromLogs.bind(redisLogs), printValues);
   router.get('/allLogs', redisMiddleware.clearByTimeForLogs.bind(redisLogs), redisMiddleware.getAllDataFromLogs.bind(redisLogs), printValues);
-  router.get('/*',redisMiddleware.clearByTimeForLogs.bind(redisLogs), redisMiddleware.getAllDataFromLogs.bind(redisLogs), redisMiddleware.checkQuotaForLogs.bind(redisLogs), redisMiddleware.getMeliData.bind(redisLogs)/*este tiene que ser el otro redis*/, redisMiddleware.updateLogs.bind(redisLogs));
-  // router.get('/', redisMiddleware.clearByTimeForLogs.bind(redisLogs)) de la https://api.mercadolibre.com/categories/MLA30802 a la MLA30835
+  router.get('/*',redisMiddleware.clearByTimeForLogs.bind(redisLogs), redisMiddleware.getAllDataFromLogs.bind(redisLogs), redisMiddleware.checkQuotaForLogs.bind(redisLogs), redisMiddleware.getMeliData.bind(redisCache), redisMiddleware.updateLogs.bind(redisLogs));
+  //https://api.mercadolibre.com/categories/MLA30802 a la MLA30835
   return router;
 }

@@ -3,8 +3,7 @@ const {promisify} = require('util');
 // redis.debug_mode = true;
 
 exports.init = (clientInfo) => {
-  // let client = redis.createClient({host: clientInfo});
-  let client = redis.createClient();
+  let client = redis.createClient({host: clientInfo});
   client.on('error', (err) => console.log(err));
   return {
     redisClient: client,
